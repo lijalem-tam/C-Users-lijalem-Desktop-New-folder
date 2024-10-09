@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e0f7fa;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+        }
+        nav a:hover{
+            background-color: hsl(0, 0%, 10%);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .submit-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        footer h3 {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+        ul{
+            list-style-type: none;
+            background-color: hsl(0, 0%, 25%);
+            padding: 20px;
+            margin: 20px;
+            overflow: hidden;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+           text-align: center;
+        }
+        a:hover{
+            background-color: hsl(0, 0%, 10%);
+        }
+
+        @media screen and (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                display: block;
+                width: 100%;
+                text-align: right;
+            }
+
+            td {
+                text-align: left;
+                border-bottom: 1px solid black;
+                padding-top: 10px;
+            }
+
+            td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                display: block;
+                text-align: right;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Work Table</h1>
+        <nav>
+            <ul>
+                <li><a href="web.html">Home</a></li>
+                <li><a href="signin.html">Sign In</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Detailed Works</th>
+                <th>Measurement</th>
+                <th>The Size of Work</th>
+                <th>First Week</th>
+                <th>Second Week</th>
+                <th>Third Week</th>
+                <th>Fourth Week</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1. Raising dry shade tree and flowers</td>
+                <td>number</td>
+                <td>0.5</td>
+                <td><input type="text" id="week1-1" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-1" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-1" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-1" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>2. Green space irrigation</td>
+                <td>km</td>
+                <td>10.80</td>
+                <td><input type="text" id="week1-2" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-2" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-2" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-2" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>3. Composting green space</td>
+                <td>km</td>
+                <td>4</td>
+                <td><input type="text" id="week1-3" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-3" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-3" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-3" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>4. Lawn with mower</td>
+                <td>km</td>
+                <td>3.2</td>
+                <td><input type="text" id="week1-4" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-4" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-4" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-4" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>5. Pruning ornamental flower green space plants</td>
+                <td>km</td>
+                <td>1.10</td>
+                <td><input type="text" id="week1-5" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-5" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-5" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-5" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>6. Repairing the balcony space</td>
+                <td>km</td>
+                <td>1.6</td>
+                <td><input type="text" id="week1-6" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-6" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-6" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-6" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>7. Brightening the area of plants</td>
+                <td>km</td>
+                <td>0.75</td>
+                <td><input type="text" id="week1-7" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-7" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-7" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-7" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>8. Newly planted pony care</td>
+                <td>km</td>
+                <td>1.24</td>
+                <td><input type="text" id="week1-8" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-8" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-8" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-8" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>9. Clearing the green space</td>
+                <td>km</td>
+                <td>0.9</td>
+                <td><input type="text" id="week1-9" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-9" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-9" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-9" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>10. Replacing dried flower stalks</td>
+                <td>km</td>
+                <td>1</td>
+                <td><input type="text" id="week1-10" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-10" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-10" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-10" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>11. Training damaged plants</td>
+                <td>km</td>
+                <td>0.7</td>
+                <td><input type="text" id="week1-11" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-11" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-11" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-11" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>12. Drain cleaning</td>
+                <td>km</td>
+                <td>0.9</td>
+                <td><input type="text" id="week1-12" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-12" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-12" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-12" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>13. Fertilizing</td>
+                <td>km</td>
+                <td>1.13</td>
+                <td><input type="text" id="week1-13" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-13" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-13" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-13" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                <td>14. Labor or protective measures</td>
+                <td>km</td>
+                <td>1.8</td>
+                <td><input type="text" id="week1-14" placeholder="Enter value"></td>
+                <td><input type="text" id="week2-14" placeholder="Enter value"></td>
+                <td><input type="text" id="week3-14" placeholder="Enter value"></td>
+                <td><input type="text" id="week4-14" placeholder="Enter value"></td>
+            </tr>
+            <tr>
+                 <td>15. Calculate the sizeOfWork </td>
+                <td></td>
+                <td>29.62</td>
+                <td><input type="text" id="conversion-week1" readonly></td>
+                <td><input type="text" id="conversion-week2" readonly></td>
+                <td><input type="text" id="conversion-week3" readonly></td>
+                <td><input type="text" id="conversion-week4" readonly></td>
+
+
+            </tr>
+            
+            <tr>
+                <td>16. Calculate the sizeOfWork converting to <=24.62</td>
+                <td></td>
+                <td></td>
+                <td><input type="text" id="conversion-week1" readonly></td>
+                <td><input type="text" id="conversion-week2" readonly></td>
+                <td><input type="text" id="conversion-week3" readonly></td>
+                <td><input type="text" id="conversion-week4" readonly></td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: right; font-weight: bold;">Total the size of Work:</td>
+                <td><span id="total-week1">0.00</span></td>
+                <td><span id="total-week2">0.00</span></td>
+                <td><span id="total-week3">0.00</span></td>
+                <td><span id="total-week4">0.00</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="submit-button" onclick="calculateTotals()">Submit</button>
+    <a href="web.html" style="display: block; text-align: center; margin: 20px; color:#333">Back</a>    
+    <footer>
+        <h3>Get Help</h3>
+        
+        <ul>
+             <li><a href="https://www.facebook.com/yourfacebookpage" target="_blank"><i class="fab fa-facebook-f">facebook</i></a></li>
+            <li><a href="https://twitter.com/yourtwitterhandle" target="_blank"><i class="fab fa-twitter">twitter</i></a></li>
+            <li><a href="https://www.instagram.com/yourinstagramhandle" target="_blank"><i class="fab fa-instagram">instagram</i></a></li>
+        
+        </ul>
+    </footer>
+    <style>
+        .footer {
+            background-color: #333;
+            padding: 20px;
+            color: white;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-social-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-social-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-social-links a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+
+    <script>
+        function calculateTotals() {
+            let totalWeek1 = 0;
+            let totalWeek2 = 0;
+            let totalWeek3 = 0;
+            let totalWeek4 = 0;
+
+            for (let i = 1; i <= 14; i++) {
+                totalWeek1 += parseFloat(document.getElementById(`week1-${i}`).value) || 0;
+                totalWeek2 += parseFloat(document.getElementById(`week2-${i}`).value) || 0;
+                totalWeek3 += parseFloat(document.getElementById(`week3-${i}`).value) || 0;
+                totalWeek4 += parseFloat(document.getElementById(`week4-${i}`).value) || 0;
+            }
+
+            document.getElementById('total-week1').innerText = totalWeek1.toFixed(2);
+            document.getElementById('total-week2').innerText = totalWeek2.toFixed(2);
+            document.getElementById('total-week3').innerText = totalWeek3.toFixed(2);
+            document.getElementById('total-week4').innerText = totalWeek4.toFixed(2);
+
+            // Calculate conversions
+            let sizeOfWork = 29.62; // Total size of work for conversion
+            let conversionWeek1 = (totalWeek1 * 24.65) / sizeOfWork;
+            let conversionWeek2 = (totalWeek2 * 24.65) / sizeOfWork;
+            let conversionWeek3 = (totalWeek3 * 24.65) / sizeOfWork;
+            let conversionWeek4 = (totalWeek4 * 24.65) / sizeOfWork;
+
+            // Output conversions
+            document.getElementById('conversion-week1').value = conversionWeek1.toFixed(2);
+            document.getElementById('conversion-week2').value = conversionWeek2.toFixed(2);
+            document.getElementById('conversion-week3').value = conversionWeek3.toFixed(2);
+            document.getElementById('conversion-week4').value = conversionWeek4.toFixed(2);
+        }
+    </script>
+</body>
+</html>

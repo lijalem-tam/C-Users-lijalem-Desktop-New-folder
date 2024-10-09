@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display: none;
+        }
+        body {
+            background-image: linear-gradient(to right, #4facfe, #00f2fe);
+        }
+        .button {
+            background-color: #4f46e5; /* Indigo */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
+        }
+        .button:hover {
+            background-color: #4338ca; /* Darker Indigo */
+            transform: translateY(-2px);
+        }
+        .button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.5);
+        }
+        .verified {
+            background-color: #34d399; /* Green */
+            color: white;
+        }
+        .error-message {
+            color: #f43f5e; /* Red */
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div id="app" class="w-full max-w-3xl mx-auto">
+        <!-- Sign Up Section -->
+        <section id="signup-section" class="bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-center mb-6">Admin Sign Up</h2>
+            <div id="signup-error" class="error-message hidden"></div>
+            <form id="signup-form">
+                <input type="text" id="signup-username" placeholder="Username" required class="border border-gray-300 p-2 rounded w-full mb-4">
+                <input type="password" id="signup-password" placeholder="Password" required class="border border-gray-300 p-2 rounded w-full mb-4">
+                <button type="submit" class="button">Sign Up</button>
+            </form>
+            <p class="text-center mt-4">
+                <a href="#" onclick="showSection('login-section')" class="text-blue-500">Already have an account? Login</a>
+            </p>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login-section" class="bg-white p-8 rounded-lg shadow-md hidden">
+            <h2 class="text-2xl font-bold text-center mb-6">Admin Login</h2>
+            <div id="login-error" class="error-message hidden"></div>
+            <form id="login-form">
+                <input type="text" id="login-username" placeholder="Username" required class="border border-gray-300 p-2 rounded w-full mb-4">
+                <input type="password" id="login-password" placeholder="Password" required class="border border-gray-300 p-2 rounded w-full mb-4">
+                <button type="submit" class="button">Login</button>
+            </form>
+            <p class="text-center mt-4">
+                <a href="#" onclick="showSection('signup-section')" class="text-blue-500">Don't have an account? Sign Up</a>
+            </p>
+        </section>
+
+        <!-- Admin Dashboard Section -->
+        <section id="admin-dashboard" class="bg-white p-8 rounded-lg shadow-md hidden">
+            <h2 class="text-2xl font-bold text-center mb-6">Admin Dashboard</h2>
+            <div class="mb-4">
+                <input type="text" id="search" placeholder="Search users..." class="border border-gray-300 p-2 rounded w-full">
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold">User Management</h3>
+                <table class="w-full table-auto border-collapse border border-gray-300 mt-4">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-300 px-4 py-2 cursor-pointer" onclick="sortTable('id')">User ID</th>
+                            <th class="border border-gray-300 px-4 py-2 cursor-pointer" onclick="sortTable('username')">Username</th>
+                            <th class="border border-gray-300 px-4 py-2 cursor-pointer" onclick="sortTable('status')">Status</th>
+                            <th class="border border-gray-300 px-4 py-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table-body"></tbody>
+                </table>
+            </div>
+            <div class="mt-6 text-center">
+                <button onclick="showSection('admin-authorization')" class="button">Administration Authorization</button>
+                <button onclick="showSection('risk-manager')" class="button">Risk Manager</button>
+            </div>
+        </section>
+
+        <!-- Administration Authorization Section -->
+        <section id="admin-authorization" class="bg-white p-8 rounded-lg shadow-md hidden">
+            <h2 class="text-2xl font-bold text-center mb-6">Administration Authorization</h2>
+            <p class="text-center">Content for Administration Authorization section goes here.</p>
+            <div class="mt-6 text-center">
+                <button onclick="showSection('admin-dashboard')" class="button">Back to Dashboard</button>
+            </div>
+        </section>
+
+        <!-- Risk Manager Section -->
+        <section id="risk-manager" class="bg-white p-8 rounded-lg shadow-md hidden">
+            <h2 class="text-2xl font-bold text-center mb-6">Risk Manager</h2>
+            <p class="text-center">Content for Risk Manager section goes here.</p>
+            <div class="mt-6 text-center">
+                <button onclick="showSection('admin-dashboard')" class="button">Back to Dashboard</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let users = [];
+        let loggedInUser;
+
+        // Function to show sections
+        function showSection(sectionId) {
+            document.getElementById('signup-section').classList.add('hidden');
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('admin-authorization').classList.add('hidden');
+            document.getElementById('risk-manager').classList.add('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
+            clearErrorMessages(); // Clear any error messages when switching sections
+        }
+
+        // Clear error messages
+        function clearErrorMessages() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(el => el.classList.add('hidden'));
+        }
+
+        // Sign Up
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+
+            // Check if username already exists
+            if (users.some(user => user.username === username)) {
+                showError('signup-error', 'Username already exists. Please choose another one.');
+                return;
+            }
+
+            users.push({ username, password, id: users.length + 1, verified: false });
+            showSection('login-section');
+        });
+
+        // Login
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            // Check credentials
+            loggedInUser = users.find(user => user.username === username && user.password === password);
+            if (loggedInUser) {
+                showSection('admin-dashboard');
+                renderUserTable(); // Render user table
+            } else {
+                showError('login-error', 'Invalid username or password');
+            }
+        });
+
+        // Show error message
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+
+        // Verify user
+        function verifyUser(userId) {
+            const user = users.find(u => u.id === userId);
+            if (user) {
+                user.verified = true; // Update user verification status
+                renderUserTable(); // Re-render the user table
+            }
+        }
+
+        // Render user table
+        function renderUserTable() {
+            const tbody = document.getElementById('user-table-body');
+            tbody.innerHTML = ''; // Clear existing rows
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.setAttribute('data-user-id', user.id);
+                row.innerHTML = `
+                    <td class="border border-gray-300 px-4 py-2">${user.id}</td>
+                    <td class="border border-gray-300 px-4 py-2">${user.username}</td>
+                    <td class="border border-gray-300 px-4 py-2 status ${user.verified ? 'verified' : ''}">
+                        ${user.verified ? 'Verified' : 'Unverified'}
+                    </td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        <button class="bg-green-500 text-white px-2 py-1 rounded" 
+                                onclick="verifyUser(${user.id})" 
+                                ${user.verified ? 'disabled' : ''}>
+                            Verify
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Sort table
+        function sortTable(column) {
+            if (column === 'id') {
+                users.sort((a, b) => a.id - b.id);
+            } else if (column === 'username') {
+                users.sort((a, b) => a.username.localeCompare(b.username));
+            } else if (column === 'status') {
+                users.sort((a, b) => {
+                    return a.verified === b.verified ? 0 : a.verified ? 1 : -1;
+                });
+            }
+            renderUserTable(); // Re-render the sorted table
+        }
+
+        // Search functionality
+        document.getElementById('search').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const filteredUsers = users.filter(user => user.username.toLowerCase().includes(query));
+            const tbody = document.getElementById('user-table-body');
+            tbody.innerHTML = ''; // Clear existing rows
+            filteredUsers.forEach(user => {
+                const row = document.createElement('tr');
+                row.setAttribute('data-user-id', user.id);
+                row.innerHTML = `
+                    <td class="border border-gray-300 px-4 py-2">${user.id}</td>
+                    <td class="border border-gray-300 px-4 py-2">${user.username}</td>
+                    <td class="border border-gray-300 px-4 py-2 status ${user.verified ? 'verified' : ''}">
+                        ${user.verified ? 'Verified' : 'Unverified'}
+                    </td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        <button class="bg-green-500 text-white px-2 py-1 rounded" 
+                                onclick="verifyUser(${user.id})" 
+                                ${user.verified ? 'disabled' : ''}>
+                            Verify
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>

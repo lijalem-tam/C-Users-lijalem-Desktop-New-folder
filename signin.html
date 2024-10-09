@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <section class="bg-white p-8 rounded shadow-md w-96 text-center">
+        <h2 class="text-xl font-bold mb-6">Welcome to the Dashboard</h2>
+        <button id="logout-button" class="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Logout</button>
+    </section>
+
+    <script>
+        document.getElementById('logout-button').addEventListener('click', function() {
+            alert('You have logged out.');
+            window.location.href = 'loginpage.html'; 
+        });
+    </script>
+</body>
+</html>
